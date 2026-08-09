@@ -262,7 +262,13 @@ export default function Home() {
   LinkedIn
 </a>
 
-          <a href="#">Instagram</a>
+          <a
+  href="https://www.instagram.com/alokumar1775/"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Instagram
+</a>
         </div>
 
         <span>© 2026 Alok Kumar</span>
