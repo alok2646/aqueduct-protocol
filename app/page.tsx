@@ -254,7 +254,13 @@ export default function Home() {
             GitHub
           </a>
 
-          <a href="#">LinkedIn</a>
+          <a
+  href="https://www.linkedin.com/in/alok-kumar-80b734263/"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  LinkedIn
+</a>
 
           <a href="#">Instagram</a>
         </div>
