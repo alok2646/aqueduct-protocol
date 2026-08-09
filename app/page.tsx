@@ -65,12 +65,6 @@ export default function Home() {
         <a href="#" className="logo">
           AK<span>.</span>
         </a>
-
-       <nav>
-  <a href="#work" className="magnetic">Work</a>
-  <a href="#services" className="magnetic">Services</a>
-  <a href="#about" className="magnetic">About</a>
-</nav>
         <a href="#contact" className="nav-button magnetic">
           Let's talk
           <ArrowUpRight size={15} />
@@ -119,6 +113,15 @@ export default function Home() {
               <a href="#contact" className="secondary-button magnetic">
                 START A PROJECT
               </a>
+              <a
+  href="/resume.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="secondary-button magnetic"
+>
+  VIEW RESUME
+  <ArrowUpRight size={16} />
+</a>
             </div>
           </div>
 
