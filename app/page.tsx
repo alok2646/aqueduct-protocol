@@ -1,69 +1,263 @@
-import Image from "next/image";
+"use client";
 
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
+import CustomCursor from "./components/CustomCursor";
+import WorkSection from "./components/WorkSection";
+import ServicesSection from "./components/ServicesSection";
+import AboutSection from "./components/AboutSection";
+import ContactSection from "./components/ContactSection";
 export default function Home() {
+  const heroRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        defaults: {
+          ease: "power4.out",
+        },
+      });
+
+      tl.from(".hero-meta", {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+      })
+        .from(
+          ".hero-line",
+          {
+            yPercent: 110,
+            opacity: 0,
+            duration: 1.1,
+            stagger: 0.12,
+          },
+          "-=0.45"
+        )
+        .from(
+          ".hero-description",
+          {
+            y: 25,
+            opacity: 0,
+            duration: 0.8,
+          },
+          "-=0.55"
+        )
+        .from(
+          ".hero-actions",
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.7,
+          },
+          "-=0.45"
+        );
+    }, heroRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    <main>
+      <CustomCursor />
+      {/* NAVBAR */}
+      <header className="navbar">
+        <a href="#" className="logo">
+          AK<span>.</span>
+        </a>
+
+       <nav>
+  <a href="#work" className="magnetic">Work</a>
+  <a href="#services" className="magnetic">Services</a>
+  <a href="#about" className="magnetic">About</a>
+</nav>
+        <a href="#contact" className="nav-button magnetic">
+          Let's talk
+          <ArrowUpRight size={15} />
+        </a>
+      </header>
+
+      {/* HERO */}
+      <section ref={heroRef} className="hero">
+        <div className="hero-glow" />
+
+        <div className="hero-content">
+          <div className="hero-meta">
+            <span className="status-dot" />
+            AVAILABLE FOR SELECT PROJECTS
+          </div>
+
+          <h1>
+            <span className="hero-line-wrapper">
+              <span className="hero-line">I BUILD</span>
+            </span>
+
+            <span className="hero-line-wrapper">
+              <span className="hero-line">DIGITAL</span>
+            </span>
+
+            <span className="hero-line-wrapper">
+              <span className="hero-line muted">
+                EXPERIENCES.
+              </span>
+            </span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+
+          <div className="hero-bottom">
+            <p className="hero-description">
+              I&apos;m Alok Kumar — a web developer and creative editor
+              building modern websites, interactive experiences and digital
+              content for ambitious brands, startups and creators.
+            </p>
+
+            <div className="hero-actions">
+              <a href="#work" className="primary-button magnetic">
+                VIEW MY WORK
+                <ArrowUpRight size={16} />
+              </a>
+
+              <a href="#contact" className="secondary-button magnetic">
+                START A PROJECT
+              </a>
+            </div>
+          </div>
+
+          <div className="hero-footer">
+            <span>WEB DEVELOPMENT × CREATIVE</span>
+
+            <span className="location">INDIA — WORLDWIDE</span>
+
+            <ArrowDown size={16} className="bounce" />
+          </div>
+          <WorkSection />
+          <ServicesSection />
+          <AboutSection />
+          <ContactSection />
+        </div>
+      </section>
+
+      {/* MARQUEE */}
+      <section className="marquee">
+        <div className="marquee-track">
+          {[1, 2].map((group) => (
+            <div className="marquee-group" key={group}>
+              <span>WEB DEVELOPMENT</span>
+              <b>✦</b>
+              <span>INTERACTIVE DESIGN</span>
+              <b>✦</b>
+              <span>REACT</span>
+              <b>✦</b>
+              <span>NEXT.JS</span>
+              <b>✦</b>
+              <span>CREATIVE EDITING</span>
+              <b>✦</b>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* WORK */}
+      <section id="work" className="placeholder-section">
+        <div className="section-label">
+          01 — SELECTED WORK
+        </div>
+
+        <h2>
+          Projects that turn
+          <br />
+          ideas into experiences.
+        </h2>
+
+        <div className="project-placeholder">
+          PROJECTS COMING SOON
+        </div>
+      </section>
+
+      {/* SERVICES */}
+      <section id="services" className="services-section">
+        <div className="section-label">
+          02 — SERVICES
+        </div>
+
+        <div className="service-list">
+          {[
+            "Web Development",
+            "Interactive Experiences",
+            "Website Redesign",
+            "Video Editing",
+          ].map((service, index) => (
+            <div className="service-row" key={service}>
+              <span>0{index + 1}</span>
+
+              <h3>{service}</h3>
+
+              <span>↗</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ABOUT */}
+      <section id="about" className="about-section">
+        <div className="section-label">
+          03 — ABOUT
+        </div>
+
+        <div>
+          <h2>
+            I combine development, design and visual storytelling
+            to create digital experiences that feel as good as they
+            function.
+          </h2>
+
+          <p>
+            Based in India and available worldwide. I work with
+            businesses, startups, agencies and creators to bring
+            digital ideas to life.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact" className="contact-section">
+        <div className="section-label">
+          04 — CONTACT
         </div>
-      </main>
-    </div>
+
+        <h2>
+          HAVE AN
+          <br />
+          <span>IDEA?</span>
+        </h2>
+
+        <a href="mailto:hello@example.com">
+          LET&apos;S BUILD IT →
+        </a>
+      </section>
+
+      {/* FOOTER */}
+      <footer>
+        <div>
+          <strong>Alok Kumar</strong>
+          <span>Web Developer × Creative Editor</span>
+        </div>
+
+        <div className="footer-links">
+          <a
+            href="https://github.com/alok2646"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
+          </a>
+
+          <a href="#">LinkedIn</a>
+
+          <a href="#">Instagram</a>
+        </div>
+
+        <span>© 2026 Alok Kumar</span>
+      </footer>
+    </main>
   );
 }
